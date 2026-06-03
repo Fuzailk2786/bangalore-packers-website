@@ -1,0 +1,29 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Lead {
+  id              String   @id @default(uuid())
+  name            String
+  email           String
+  phone           String
+  movingFrom      String
+  movingTo        String
+  moveDate        DateTime
+  serviceType     String
+  itemsDescription text?
+  status          String   @default("PENDING") // PENDING, CONTACTED, CONVERTED, LOST
+  createdAt       DateTime @default(now())
+}
+
+model CallbackRequest {
+  id        String   @id @default(uuid())
+  phone     String
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+}
