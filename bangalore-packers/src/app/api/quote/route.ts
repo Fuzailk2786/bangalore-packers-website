@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// This safely initializes Resend only if the key exists
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(request: Request) {
   try {
@@ -10,7 +11,8 @@ export async function POST(request: Request) {
 
     console.log(`New moving lead received from: ${name}`);
 
-    if (process.env.RESEND_API_KEY) {
+    // Only send email if Resend is fully configured
+    if (resend && process.env.RESEND_API_KEY) {
       await resend.emails.send({
         from: 'Leads <leads@yourdomain.com>',
         to: 'sales@yourdomain.com',
