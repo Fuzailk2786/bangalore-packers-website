@@ -4,7 +4,7 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
 import CallNowButton from '@/components/common/CallNowButton';
-import './globals.css';
+import '../app/globals.css'; // <-- Change it exactly to this!
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
