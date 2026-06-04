@@ -11,10 +11,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: 'Invalid phone entry' }, { status: 400 });
     }
 
-    // Database capture is bypassed for initial deployment phase
     console.log(`Callback lead received for phone number: ${phone}`);
 
-    // Alert dispatch team immediately via email notification
     if (process.env.RESEND_API_KEY) {
       await resend.emails.send({
         from: 'Callbacks <leads@yourdomain.com>',
