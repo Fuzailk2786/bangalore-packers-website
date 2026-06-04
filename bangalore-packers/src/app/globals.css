@@ -7,8 +7,3 @@
     @apply antialiased text-slate-950 bg-slate-50;
   }
 }
-
-/* Custom performance transitions */
-.smooth-hover {
-  @transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
