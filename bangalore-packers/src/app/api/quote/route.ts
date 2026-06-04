@@ -10,7 +10,6 @@ export async function POST(request: Request) {
 
     console.log(`New moving lead received from: ${name}`);
 
-    // Send immediate email notification to Admin if API key exists
     if (process.env.RESEND_API_KEY) {
       await resend.emails.send({
         from: 'Leads <leads@yourdomain.com>',
