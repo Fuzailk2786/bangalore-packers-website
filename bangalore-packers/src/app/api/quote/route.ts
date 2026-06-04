@@ -8,26 +8,27 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, email, phone, movingFrom, movingTo, moveDate, serviceType, itemsDescription } = body;
 
-    // Optional: Save to PostgreSQL via Prisma here
-    // await prisma.lead.create({ data: { ... } });
+    console.log(`New moving lead received from: ${name}`);
 
-    // Send immediate email notification to Admin
-    await resend.emails.send({
-      from: 'Leads <leads@yourdomain.com>',
-      to: 'sales@yourdomain.com',
-      subject: `🔥 New High-Intent Lead: ${serviceType} - ${movingFrom} to ${movingTo}`,
-      html: `
-        <h3>New Quote Request Details:</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>From:</strong> ${movingFrom}</p>
-        <p><strong>To:</strong> ${movingTo}</p>
-        <p><strong>Move Date:</strong> ${moveDate}</p>
-        <p><strong>Service:</strong> ${serviceType}</p>
-        <p><strong>Inventory/Notes:</strong> ${itemsDescription || 'None'}</p>
-      `
-    });
+    // Send immediate email notification to Admin if API key exists
+    if (process.env.RESEND_API_KEY) {
+      await resend.emails.send({
+        from: 'Leads <leads@yourdomain.com>',
+        to: 'sales@yourdomain.com',
+        subject: `🔥 New High-Intent Lead: ${serviceType} - ${movingFrom} to ${movingTo}`,
+        html: `
+          <h3>New Quote Request Details:</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>From:</strong> ${movingFrom}</p>
+          <p><strong>To:</strong> ${movingTo}</p>
+          <p><strong>Move Date:</strong> ${moveDate}</p>
+          <p><strong>Service:</strong> ${serviceType}</p>
+          <p><strong>Inventory/Notes:</strong> ${itemsDescription || 'None'}</p>
+        `
+      });
+    }
 
     return NextResponse.json({ success: true, message: 'Quote request submitted successfully' }, { status: 200 });
   } catch (error) {
