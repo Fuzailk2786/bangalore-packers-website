@@ -4,16 +4,16 @@ import StickyHeader from "@/components/ui/StickyHeader";
 import FAQSection from "@/components/ui/FAQSection";
 
 export const metadata = {
-  title: "Professional Shifting & Logistics Services Bangalore | Portavo Move",
-  description: "Browse our complete suite of relocation services in Bangalore. We handle domestic, international, office, vehicle, and packing services.[2, 3, 43]",
+  title: "Professional Shifting & Logistics Services Bangalore & Chennai | Portavo Move",
+  description: "Browse our complete suite of relocation services in South India. We handle domestic, international, office, vehicle, and packing services.",
 };
 
 export default function ServicesIndexPage() {
   const serviceList =" },
-    { title: "International Moving", path: "/services/international-relocation", desc: "Global moving services including export packing, air/ocean freight, and port customs clearance.[3, 23]" },
-    { title: "Corporate Shifting", path: "/services/office-relocation", desc: "Workspace and IT equipment relocations scheduled around operational hours.[2, 6]" },
-    { title: "Vehicle Transport", path: "/services/vehicle-transport", desc: "Car and motorcycle transport via specialized open and closed container carriers.[2, 3]" },
-    { title: "Packing Services", path: "/services/packing-services", desc: "Multi-layer packing using corridor-grade corrugated boxes and heavy-duty bubble wrap.[2]" }
+    { title: "International Moving", path: "/services/international-relocation", desc: "Global moving services including export packing, air/ocean freight, and port customs clearance." },
+    { title: "Corporate Shifting", path: "/services/office-relocation", desc: "Workspace and IT equipment relocations scheduled around operational hours." },
+    { title: "Vehicle Transport", path: "/services/vehicle-transport", desc: "Car and motorcycle transport via specialized open and closed container carriers." },
+    { title: "Packing Services", path: "/services/packing-services", desc: "Multi-layer packing using corridor-grade corrugated boxes and heavy-duty bubble wrap." }
   ];
 
   return (
