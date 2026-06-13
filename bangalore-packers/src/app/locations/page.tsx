@@ -3,15 +3,15 @@ import StickyHeader from "@/components/ui/StickyHeader";
 import FAQSection from "@/components/ui/FAQSection";
 
 export const metadata = {
-  title: "Areas Served in Bangalore | Portavo Packers and Movers",
-  description: "Browse our relocation service areas in Bangalore, including Whitefield, HSR Layout, Indiranagar, and Electronic City.[1, 6, 43]",
+  title: "Areas Served in Bangalore & Chennai | Portavo Packers and Movers",
+  description: "Browse our relocation service areas, including Whitefield, HSR Layout, Adyar, and Velachery.",
 };
 
 export default function LocationsPage() {
   const regions = },
-    { zone: "South Bangalore", hubs: },
-    { zone: "North Bangalore", hubs: },
-    { zone: "West Bangalore", hubs: }
+    { zone: "East Bangalore", hubs: },
+    { zone: "South Chennai", hubs: },
+    { zone: "Central Chennai", hubs: }
   ];
 
   return (
@@ -20,7 +20,7 @@ export default function LocationsPage() {
       <main className="bg-slate-950 min-h-screen text-white pt-24">
         <section className="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Service Coverage</span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-12 tracking-tight">Our Areas Served in Bangalore</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-12 tracking-tight">Our Areas Served</h1>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {regions.map((reg, idx) => (
