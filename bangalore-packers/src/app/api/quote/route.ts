@@ -1,38 +1,70 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+import { z } from "zod";
 
-// This safely initializes Resend only if the key exists
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const prisma = new PrismaClient();
+
+const leadSchema = z.object({
+  fullName: z.string().min(2, "Full name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().regex(/^[6-9]\d{9}$/, "Please enter a valid 10-digit Indian mobile number"),
+  originCity: z.string().min(2, "Origin location is required"),
+  destinationCity: z.string().min(2, "Destination location is required"),
+  moveDate: z.string().transform((str) => new Date(str)),
+  moveType: z.enum(),
+  cargoDescription: z.string().optional(),
+  volumeEstimate: z.string().optional(),
+  isVehicleIncluded: z.boolean().default(false)
+});
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, phone, movingFrom, movingTo, moveDate, serviceType, itemsDescription } = body;
+    
+    // Server-side validation using Zod
+    const validatedData = leadSchema.parse(body);
 
-    console.log(`New moving lead received from: ${name}`);
+    // Save lead to database via Prisma ORM
+    const newLead = await prisma.lead.create({
+      data: {
+        fullName: validatedData.fullName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        originCity: validatedData.originCity,
+        destinationCity: validatedData.destinationCity,
+        moveDate: validatedData.moveDate,
+        moveType: validatedData.moveType,
+        cargoDescription: validatedData.cargoDescription || null,
+        volumeEstimate: validatedData.volumeEstimate || null,
+        isVehicleIncluded: validatedData.isVehicleIncluded,
+        status: "NEW"
+      }
+    });
 
-    // Only send email if Resend is fully configured
-    if (resend && process.env.RESEND_API_KEY) {
-      await resend.emails.send({
-        from: 'Leads <leads@yourdomain.com>',
-        to: 'sales@yourdomain.com',
-        subject: `🔥 New High-Intent Lead: ${serviceType} - ${movingFrom} to ${movingTo}`,
-        html: `
-          <h3>New Quote Request Details:</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>From:</strong> ${movingFrom}</p>
-          <p><strong>To:</strong> ${movingTo}</p>
-          <p><strong>Move Date:</strong> ${moveDate}</p>
-          <p><strong>Service:</strong> ${serviceType}</p>
-          <p><strong>Inventory/Notes:</strong> ${itemsDescription || 'None'}</p>
-        `
-      });
+    // Simulate Email and SMS triggers for operational dispatch
+    // In a production environment, integrate with Nodemailer, Twilio, or SendGrid here
+    console.log(`Operational Dispatch Triggered: Lead Ingested with ID ${newLead.id}`);
+
+    return NextResponse.json({ 
+      success: true, 
+      message: "Lead captured successfully", 
+      leadId: newLead.id 
+    }, { status: 201 });
+
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ 
+        success: false, 
+        errors: error.errors 
+      }, { status: 400 });
     }
 
-    return NextResponse.json({ success: true, message: 'Quote request submitted successfully' }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
+    console.error("Critical Database Ingestion Error:", error);
+    return NextResponse.json({ 
+      success: false, 
+      message: "Internal server processing failure" 
+    }, { status: 500 });
+  } finally {
+    await prisma.$disconnect();
   }
 }
