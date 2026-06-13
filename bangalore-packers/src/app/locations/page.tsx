@@ -1,5 +1,3 @@
-// src/app/locations/page.tsx
-
 import React from "react";
 import StickyHeader from "@/components/ui/StickyHeader";
 import FAQSection from "@/components/ui/FAQSection";
