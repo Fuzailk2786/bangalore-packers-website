@@ -1,33 +1,45 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
+// src/app/services/page.tsx
 
-export const metadata: Metadata = {
-  title: 'Professional Relocation Services in Bangalore',
-  description: 'Explore premium certified shifting solutions including domestic, international, office, and auto tracking transport services across Bangalore.',
+import React from "react";
+import Link from "next/link";
+import StickyHeader from "@/components/ui/StickyHeader";
+import FAQSection from "@/components/ui/FAQSection";
+
+export const metadata = {
+  title: "Professional Shifting & Logistics Services Bangalore | Portavo Move",
+  description: "Browse our complete suite of relocation services in Bangalore. We handle domestic, international, office, vehicle, and packing services.[2, 3, 43]",
 };
 
-export default function ServicesPage() {
-  const items = [
-    { name: "Domestic Relocation", path: "/services/domestic-relocation", desc: "Inter-city relocation using dedicated premium enclosed transport frameworks." },
-    { name: "International Relocation", path: "/services/international-relocation", desc: "Global end-to-end relocation packages with complete customs clearance assistance." },
-    { name: "Office Relocation", path: "/services/office-relocation", desc: "Corporate setup transfers with minimized workplace downtime execution." },
-    { name: "Vehicle Transport", path: "/services/vehicle-transport", desc: "Enclosed structural transport for premium multi-wheel units and bikes." },
-    { name: "Packing Services", path: "/services/packing-services", desc: "Industrial standard packaging deploying five-layered corrugated item safety crates." }
+export default function ServicesIndexPage() {
+  const serviceList =" },
+    { title: "International Moving", path: "/services/international-relocation", desc: "Global moving services including export packing, air/ocean freight, and port customs clearance.[3, 23]" },
+    { title: "Corporate Shifting", path: "/services/office-relocation", desc: "Workspace and IT equipment relocations scheduled around operational hours.[2, 6]" },
+    { title: "Vehicle Transport", path: "/services/vehicle-transport", desc: "Car and motorcycle transport via specialized open and closed container carriers.[2, 3]" },
+    { title: "Packing Services", path: "/services/packing-services", desc: "Multi-layer packing using corridor-grade corrugated boxes and heavy-duty bubble wrap.[2]" }
   ];
 
   return (
-    <div className="py-16 max-w-5xl mx-auto px-4">
-      <h1 className="text-4xl font-black mb-4 tracking-tight text-center">Our Specialized Moving Capabilities</h1>
-      <p className="text-center text-slate-500 mb-12">Click individual specific modules to explore localized pricing and workflows.</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {items.map((it, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition">
-            <h2 className="text-xl font-bold mb-2 text-slate-900">{it.name}</h2>
-            <p className="text-sm text-slate-600 mb-4">{it.desc}</p>
-            <Link href={it.path} className="text-orange-600 text-xs font-bold uppercase tracking-wider hover:text-orange-700">Explore Service →</Link>
+    <>
+      <StickyHeader />
+      <main className="bg-slate-950 min-h-screen text-white pt-24">
+        <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Service Suite</span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-12 tracking-tight">Our Relocation Services</h1>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {serviceList.map((srv, idx) => (
+              <div key={idx} className="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-left space-y-4 hover:border-indigo-500 transition-all duration-300">
+                <h3 className="text-xl font-bold text-white tracking-wide">{srv.title}</h3>
+                <p className="text-slate-400 text-xs leading-relaxed">{srv.desc}</p>
+                <Link href={srv.path} className="text-indigo-400 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-1.5 hover:text-indigo-300">
+                  <span>Learn More</span> &rarr;
+                </Link>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </section>
+        <FAQSection />
+      </main>
+    </>
   );
 }
