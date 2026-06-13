@@ -1,5 +1,3 @@
-// src/app/services/packing-services/page.tsx
-
 import React from "react";
 import QuoteForm from "@/components/ui/QuoteForm";
 import StickyHeader from "@/components/ui/StickyHeader";
