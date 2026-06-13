@@ -1,5 +1,3 @@
-// src/app/blog/page.tsx
-
 import React from "react";
 import Link from "next/link";
 import StickyHeader from "@/components/ui/StickyHeader";
