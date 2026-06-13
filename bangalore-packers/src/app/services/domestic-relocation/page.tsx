@@ -1,5 +1,3 @@
-// src/app/services/domestic-relocation/page.tsx
-
 import React from "react";
 import Link from "next/link";
 import QuoteForm from "@/components/ui/QuoteForm";
