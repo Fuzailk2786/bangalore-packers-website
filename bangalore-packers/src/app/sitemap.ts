@@ -1,5 +1,3 @@
-// src/app/sitemap.ts
-
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): MetadataRoute.Sitemap {
