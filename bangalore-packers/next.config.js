@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ['images.unsplash.com'],
+  turbopack: {
+    // This tells Turbopack to use the directory where 
+    // this config file is located as the root.
+    root: __dirname,
   },
 };
 
