@@ -1,27 +1,47 @@
-import { Metadata } from 'next';
-import QuoteForm from '@/components/forms/QuoteForm';
+// src/app/locations/page.tsx
 
-export const metadata: Metadata = {
-  title: 'Areas We Serve in Bangalore | Apex Packers and Movers',
-  description: 'Check our comprehensive service area list across Bangalore, including key hubs like HSR Layout, Whitefield, Indiranagar, Electronic City, and Koramangala.',
+import React from "react";
+import StickyHeader from "@/components/ui/StickyHeader";
+import FAQSection from "@/components/ui/FAQSection";
+
+export const metadata = {
+  title: "Areas Served in Bangalore | Portavo Packers and Movers",
+  description: "Browse our relocation service areas in Bangalore, including Whitefield, HSR Layout, Indiranagar, and Electronic City.[1, 6, 43]",
 };
 
 export default function LocationsPage() {
+  const regions = },
+    { zone: "South Bangalore", hubs: },
+    { zone: "North Bangalore", hubs: },
+    { zone: "West Bangalore", hubs: }
+  ];
+
   return (
-    <div className="py-12 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <div className="lg:col-span-7">
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 mb-6">Our Fleet Coverage Across Bangalore</h1>
-        <p className="text-slate-600 leading-relaxed mb-6">
-          With localized fleet hubs positioned across key Bangalore sectors, we guarantee on-time arrivals for packing crews and delivery trucks, helping you avoid common city traffic delays.
-        </p>
-        <div className="bg-slate-100 p-6 rounded-xl">
-          <h3 className="font-bold text-sm uppercase tracking-wider text-slate-500 mb-4">Immediate Service Hub Coordinates:</h3>
-          <p className="text-sm text-slate-700 font-medium">📍 East Zone: Whitefield, Marathahalli, Indiranagar</p>
-          <p className="text-sm text-slate-700 font-medium mt-2">📍 South Zone: HSR Layout, Koramangala, Jayanagar, BTM Layout</p>
-          <p className="text-sm text-slate-700 font-medium mt-2">📍 North & West Zone: Yelahanka, Hebbal, Malleshwaram</p>
-        </div>
-      </div>
-      <div className="lg:col-span-5"><QuoteForm /></div>
-    </div>
+    <>
+      <StickyHeader />
+      <main className="bg-slate-950 min-h-screen text-white pt-24">
+        <section className="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Service Coverage</span>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-12 tracking-tight">Our Areas Served in Bangalore</h1>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {regions.map((reg, idx) => (
+              <div key={idx} className="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-left space-y-4">
+                <h3 className="text-lg font-bold text-indigo-400 tracking-wide border-b border-slate-800 pb-2">{reg.zone}</h3>
+                <ul className="space-y-2">
+                  {reg.hubs.map((hub, i) => (
+                    <li key={i} className="text-slate-300 text-sm flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
+                      {hub}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+        <FAQSection />
+      </main>
+    </>
   );
 }
