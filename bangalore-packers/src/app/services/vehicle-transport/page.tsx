@@ -1,5 +1,3 @@
-// src/app/services/vehicle-transport/page.tsx
-
 import React from "react";
 import QuoteForm from "@/components/ui/QuoteForm";
 import StickyHeader from "@/components/ui/StickyHeader";
