@@ -5,14 +5,11 @@ import FAQSection from "@/components/ui/FAQSection";
 
 export const metadata = {
   title: "Relocation Guides and Insights | Portavo Packers and Movers",
-  description: "Browse our packing strategies, shifting checklists, cost optimization guides, and intercity transit insights.[2, 3, 43]",
+  description: "Browse our packing strategies, shifting checklists, cost optimization guides, and intercity transit insights.",
 };
 
 export default function BlogIndexPage() {
-  const posts =" },
-    { title: "Avoid Shifting Scams: How to Verify Local Movers", date: "March 22, 2026", preview: "Learn how to verify licensing, company registration, e-Karmika filings, and avoid hidden pricing adjustments.[31, 42]" },
-    { title: "How to Securely Transport Cars & Bikes Across India", date: "February 10, 2026", preview: "The documentation, prep work, and carrier types required for secure vehicle transit.[28, 42]" }
-  ];
+  const posts =;
 
   return (
     <>
@@ -22,7 +19,7 @@ export default function BlogIndexPage() {
           <div className="text-center">
             <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Resource Hub</span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4 tracking-tight">Our Relocation Guides & Insights</h1>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">Expert advice on packing strategies, checklist layouts, and logistics safety standards.[2, 3, 44]</p>
+            <p className="text-slate-400 text-sm max-w-xl mx-auto">Expert advice on packing strategies, checklist layouts, and logistics safety standards.</p>
           </div>
 
           <div className="space-y-8">
