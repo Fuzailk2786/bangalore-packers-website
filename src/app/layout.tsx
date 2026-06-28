@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: 'https://www.yourdomain.com',
-    siteName: 'Apex Packers and Movers',
+    siteName: 'movesafe Packers and Movers',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Apex Packers and Movers Bangalore' }]
   }
 };
