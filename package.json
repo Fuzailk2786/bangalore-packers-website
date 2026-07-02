@@ -3,11 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "npx prisma generate && next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+  "build": npx prisma generate && next build".  
+}
   "dependencies": {
     "next": "14.1.0",
     "react": "^18",
