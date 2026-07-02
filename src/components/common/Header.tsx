@@ -16,7 +16,7 @@ export default function Header() {
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-slate-900 text-white py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-xl font-black tracking-tight text-orange-600">
-          APEX<span className={isScrolled ? 'text-slate-900' : 'text-white'}>LOGISTICS</span>
+          Move<span className={isScrolled ? 'text-slate-900' : 'text-white'}>Safe</span>
         </Link>
         <nav className="hidden md:flex space-x-6 font-medium text-sm">
           <Link href="/services" className="hover:text-orange-500 transition">Services</Link>

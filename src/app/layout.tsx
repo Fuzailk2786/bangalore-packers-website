@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.yourdomain.com'),
   title: {
     default: 'Best Packers and Movers in Bangalore | Safe & Reliable Shifting',
-    template: '%s | Apex Packers and Movers Bangalore'
+    template: '%s | MoveSafe Packers and Movers Bangalore'
   },
   description: 'Top-rated Packers and Movers in Bangalore. Get professional home shifting, office relocation, domestic moving, and vehicle transport services at affordable rates.',
   alternates: {
@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_IN',
     url: 'https://www.yourdomain.com',
-    siteName: 'Apex Packers and Movers',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Apex Packers and Movers Bangalore' }]
+    siteName: 'MoveSafe Packers and Movers',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'MoveSafe Packers and Movers Bangalore' }]
   }
 };
 
