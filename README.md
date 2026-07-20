@@ -7,7 +7,7 @@ You do not need to be an experienced programmer to run or edit this project. Fol
 ## Business Details
 
 - Business: MoveSafe Packers and Movers
-- Phone: +91 95350 40554
+- Phone: +91 88844 55199
 - Address: No. 45, 3rd Cross, HSR Layout, Sector 2, Bangalore, Karnataka 560102
 
 The shared business details are stored in `src/lib/site.ts`. Change them there instead of editing every page separately.
@@ -103,10 +103,10 @@ Open `src/lib/site.ts` and update the values in `SITE`:
 ```ts
 export const SITE = {
   name: 'MoveSafe Packers and Movers',
-  phone: '9535040554',
-  phoneDisplay: '+91 95350 40554',
-  phoneHref: 'tel:+919535040554',
-  whatsappNumber: '919535040554',
+  phone: '8884455199',
+  phoneDisplay: '+91 88844 55199',
+  phoneHref: 'tel:+918884455199',
+  whatsappNumber: '918884455199',
   // ...
 };
 ```
