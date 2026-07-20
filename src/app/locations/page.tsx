@@ -1,45 +1,48 @@
-import React from "react";
-import StickyHeader from "@/components/ui/StickyHeader";
-import FAQSection from "@/components/ui/FAQSection";
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
-export const metadata = {
-  title: "Areas Served in Bangalore & Chennai | Portavo Packers and Movers",
-  description: "Browse our relocation service areas, including Whitefield, HSR Layout, Adyar, and Velachery.",
+export const metadata: Metadata = {
+  title: 'Areas Served in Bangalore',
+  description: 'MoveSafe serves HSR Layout and major localities across Bangalore, with domestic relocation services throughout India.',
 };
 
-export default function LocationsPage() {
-  const regions = },
-    { zone: "East Bangalore", hubs: },
-    { zone: "South Chennai", hubs: },
-    { zone: "Central Chennai", hubs: }
-  ];
+const regions = [
+  { zone: 'South Bangalore', areas: ['HSR Layout', 'Koramangala', 'BTM Layout', 'Jayanagar', 'JP Nagar', 'Electronic City'] },
+  { zone: 'East Bangalore', areas: ['Whitefield', 'Marathahalli', 'Bellandur', 'Sarjapur Road', 'Indiranagar', 'KR Puram'] },
+  { zone: 'North Bangalore', areas: ['Hebbal', 'Yelahanka', 'Hennur', 'Jakkur', 'Thanisandra', 'Devanahalli'] },
+  { zone: 'West & Central', areas: ['Rajajinagar', 'Vijayanagar', 'Malleshwaram', 'Yeshwanthpur', 'Richmond Town', 'MG Road'] },
+];
 
+const cities = ['Chennai', 'Hyderabad', 'Mumbai', 'Pune', 'Delhi NCR', 'Kochi', 'Kolkata', 'Ahmedabad'];
+
+export default function LocationsPage() {
   return (
-    <>
-      <StickyHeader />
-      <main className="bg-slate-950 min-h-screen text-white pt-24">
-        <section className="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Service Coverage</span>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-12 tracking-tight">Our Areas Served</h1>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {regions.map((reg, idx) => (
-              <div key={idx} className="bg-slate-900 border border-slate-800 p-6 rounded-2xl text-left space-y-4">
-                <h3 className="text-lg font-bold text-indigo-400 tracking-wide border-b border-slate-800 pb-2">{reg.zone}</h3>
-                <ul className="space-y-2">
-                  {reg.hubs.map((hub, i) => (
-                    <li key={i} className="text-slate-300 text-sm flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
-                      {hub}
-                    </li>
-                  ))}
-                </ul>
+    <main>
+      <section className="bg-slate-950 py-20 text-center text-white">
+        <div className="page-shell">
+          <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.2em] text-orange-500">Areas served</p>
+          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">Moving across Bangalore and beyond</h1>
+          <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-slate-300">From our base in HSR Layout, we coordinate moves throughout Bangalore and to major cities across India.</p>
+        </div>
+      </section>
+      <section className="bg-stone-50 py-20">
+        <div className="page-shell">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {regions.map((region) => (
+              <div key={region.zone} className="rounded-3xl border border-slate-200 bg-white p-7">
+                <h2 className="text-lg font-black">{region.zone}</h2>
+                <ul className="mt-5 space-y-3 text-sm text-slate-600">{region.areas.map((area) => <li key={area} className="border-b border-slate-100 pb-2">{area}</li>)}</ul>
               </div>
             ))}
           </div>
-        </section>
-        <FAQSection />
-      </main>
-    </>
+          <div className="mt-16 rounded-3xl bg-orange-600 p-8 text-white md:p-10">
+            <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-orange-100">Popular intercity routes</p>
+            <h2 className="mt-3 text-3xl font-black">From Bangalore to cities across India</h2>
+            <div className="mt-6 flex flex-wrap gap-2">{cities.map((city) => <span key={city} className="rounded-full bg-white/15 px-4 py-2 text-sm font-bold">{city}</span>)}</div>
+            <Link href="/request-quote" className="secondary-button mt-8 border-white">Check Your Route</Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

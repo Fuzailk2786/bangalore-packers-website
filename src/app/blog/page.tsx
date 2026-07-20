@@ -1,44 +1,34 @@
-import React from "react";
-import Link from "next/link";
-import StickyHeader from "@/components/ui/StickyHeader";
-import FAQSection from "@/components/ui/FAQSection";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { POSTS } from '@/lib/blog';
 
-export const metadata = {
-  title: "Relocation Guides and Insights | Portavo Packers and Movers",
-  description: "Browse our packing strategies, shifting checklists, cost optimization guides, and intercity transit insights.",
+export const metadata: Metadata = {
+  title: 'Moving Guides',
+  description: 'Practical guides for planning, pricing and packing your move in Bangalore.',
 };
 
-export default function BlogIndexPage() {
-  const posts =;
-
+export default function BlogPage() {
   return (
-    <>
-      <StickyHeader />
-      <main className="bg-slate-950 min-h-screen text-white pt-24">
-        <section className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-left space-y-12">
-          <div className="text-center">
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Resource Hub</span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4 tracking-tight">Our Relocation Guides & Insights</h1>
-            <p className="text-slate-400 text-sm max-w-xl mx-auto">Expert advice on packing strategies, checklist layouts, and logistics safety standards.</p>
-          </div>
-
-          <div className="space-y-8">
-            {posts.map((post, idx) => (
-              <article key={idx} className="bg-slate-900 border border-slate-800 p-8 rounded-2xl space-y-4 hover:border-indigo-500 transition-all duration-300">
-                <div className="text-xs text-slate-400 font-medium">{post.date}</div>
-                <h3 className="text-2xl font-bold text-white tracking-wide">{post.title}</h3>
-                <p className="text-slate-300 text-sm leading-relaxed">{post.preview}</p>
-                <div>
-                  <Link href="/blog" className="text-indigo-400 text-sm font-bold uppercase tracking-wider inline-flex items-center gap-1.5 hover:text-indigo-300">
-                    <span>Read Article</span> &rarr;
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-        <FAQSection />
-      </main>
-    </>
+    <main>
+      <section className="bg-slate-950 py-20 text-white">
+        <div className="page-shell max-w-3xl text-center">
+          <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.2em] text-orange-500">Moving guides</p>
+          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">Useful advice before the first box is packed</h1>
+          <p className="mt-5 leading-relaxed text-slate-300">Straightforward guides to help you plan, prepare and ask better questions about your move.</p>
+        </div>
+      </section>
+      <section className="bg-stone-50 py-20">
+        <div className="page-shell grid gap-6 lg:grid-cols-3">
+          {POSTS.map((post, index) => (
+            <article key={post.slug} className={`flex flex-col rounded-3xl border p-8 ${index === 0 ? 'border-orange-600 bg-orange-600 text-white lg:col-span-2' : 'border-slate-200 bg-white'}`}>
+              <div className={`text-xs font-extrabold uppercase tracking-[0.16em] ${index === 0 ? 'text-orange-100' : 'text-orange-600'}`}>{post.category} · {post.date}</div>
+              <h2 className="mt-8 text-2xl font-black tracking-tight sm:text-3xl">{post.title}</h2>
+              <p className={`mt-4 text-sm leading-relaxed ${index === 0 ? 'text-orange-50' : 'text-slate-600'}`}>{post.description}</p>
+              <Link href={`/blog/${post.slug}`} className="mt-8 inline-flex min-h-11 items-center text-sm font-extrabold">Read guide &rarr;</Link>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }

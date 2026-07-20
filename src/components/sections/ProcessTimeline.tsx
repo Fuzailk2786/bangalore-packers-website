@@ -1,21 +1,24 @@
 export default function ProcessTimeline() {
   const steps = [
-    { title: "1. Virtual / In-Home Survey", desc: "Share items via our instant quote framework or request a detailed verification walkthrough." },
-    { title: "2. Strategic Multi-Layer Packing", desc: "Heavy furniture and items are packed with zero-bubble sheets, corrugated sheets, and durable boxes." },
-    { title: "3. Secure Loading & Transit", desc: "Handled strictly by our direct, verified logistics crew using specialized enclosed auto-containers." },
-    { title: "4. Fast Unloading & Setup", desc: "Safe unloading, unpackaging, and placement setup inside your newly allocated property structure." }
+    { number: '01', title: 'Share Your Move', desc: 'Tell us the locations, date and key items so we can understand the job.' },
+    { number: '02', title: 'Survey & Estimate', desc: 'We confirm the inventory and access details, then share a clear estimate.' },
+    { number: '03', title: 'Pack & Transport', desc: 'The crew packs, labels, loads and transports your belongings as planned.' },
+    { number: '04', title: 'Unload & Settle In', desc: 'Items are unloaded by room, with unpacking support if included in your plan.' }
   ];
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-extrabold text-center text-slate-900 mb-2 tracking-tight">Our Precision Operational Workflow</h2>
-        <p className="text-center text-slate-500 max-w-xl mx-auto mb-12 text-sm">Four structured execution steps engineered to avoid structural damage and moving delays.</p>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {steps.map((step, index) => (
-            <div key={index} className="p-6 bg-slate-50 rounded-xl border border-slate-100 relative">
-              <h3 className="font-bold text-slate-900 text-lg mb-2">{step.title}</h3>
-              <p className="text-sm text-slate-600 leading-relaxed">{step.desc}</p>
+    <section className="bg-white py-20">
+      <div className="page-shell">
+        <div className="mb-12 max-w-2xl">
+          <p className="eyebrow mb-3">How it works</p>
+          <h2 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">A clear plan from first call to final box</h2>
+        </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-4">
+          {steps.map((step) => (
+            <div key={step.number} className="relative rounded-2xl border border-slate-200 bg-stone-50 p-6">
+              <span className="mb-8 block text-3xl font-black text-orange-200">{step.number}</span>
+              <h3 className="mb-2 text-lg font-extrabold text-slate-950">{step.title}</h3>
+              <p className="text-sm leading-relaxed text-slate-600">{step.desc}</p>
             </div>
           ))}
         </div>

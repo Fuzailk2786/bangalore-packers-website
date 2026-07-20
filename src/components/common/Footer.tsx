@@ -1,43 +1,40 @@
 import Link from 'next/link';
+import { SERVICES, SITE } from '@/lib/site';
 
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-slate-900 text-slate-400 pt-16 pb-8 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="border-t border-slate-800 bg-slate-950 pb-8 pt-16 text-slate-400">
+      <div className="page-shell grid grid-cols-1 gap-10 md:grid-cols-4">
         <div>
-          <h3 className="text-white text-lg font-bold mb-4">MoveSafe Logistics Bangalore</h3>
+          <h3 className="mb-4 text-xl font-black text-white">Move<span className="text-orange-500">Safe</span></h3>
           <p className="text-sm leading-relaxed">
-            Bangalore's trusted logistics professionals specializing in household moving, high-value corporate transitions, and international cargo safety management.
+            Practical, carefully planned home and business relocation services from HSR Layout, Bangalore.
           </p>
         </div>
         <div>
-          <h4 className="text-white font-semibold mb-4">Core Services</h4>
+          <h4 className="mb-4 font-bold text-white">Services</h4>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/services/domestic-relocation" className="hover:text-white transition">Domestic Shifting</Link></li>
-            <li><Link href="/services/international-relocation" className="hover:text-white transition">International Moving</Link></li>
-            <li><Link href="/services/office-relocation" className="hover:text-white transition">Office Relocation</Link></li>
-            <li><Link href="/services/vehicle-transport" className="hover:text-white transition">Car & Bike Transport</Link></li>
+            {SERVICES.slice(0, 4).map((service) => <li key={service.slug}><Link href={`/services/${service.slug}`} className="inline-flex min-h-11 items-center transition hover:text-white">{service.title}</Link></li>)}
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-semibold mb-4">Company</h4>
+          <h4 className="mb-4 font-bold text-white">Company</h4>
           <ul className="space-y-2 text-sm">
-            <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-            <li><Link href="/locations" className="hover:text-white transition">Areas Served</Link></li>
-            <li><Link href="/blog" className="hover:text-white transition">Resource Blog</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition">Contact Us</Link></li>
+            <li><Link href="/about" className="inline-flex min-h-11 items-center transition hover:text-white">About Us</Link></li>
+            <li><Link href="/locations" className="inline-flex min-h-11 items-center transition hover:text-white">Areas Served</Link></li>
+            <li><Link href="/blog" className="inline-flex min-h-11 items-center transition hover:text-white">Moving Guides</Link></li>
+            <li><Link href="/contact" className="inline-flex min-h-11 items-center transition hover:text-white">Contact Us</Link></li>
           </ul>
         </div>
         <div>
-          <h4 className="text-white font-semibold mb-4">Compliance & Trust</h4>
-          <p className="text-sm">📍 Head Office: HSR Layout, Sector 2, Bangalore, KA - 560102</p>
-          <p className="text-sm mt-2">📞 Phone: +91 88844 55199</p>
-          <p className="text-xs mt-4 text-slate-500">IBA Approved Logistics Operations Operator</p>
+          <h4 className="mb-4 font-bold text-white">Contact</h4>
+          <p className="text-sm leading-relaxed">{SITE.address}</p>
+          <a href={SITE.phoneHref} className="mt-3 inline-flex min-h-11 items-center text-sm font-bold text-orange-400 hover:text-orange-300">{SITE.phoneDisplay}</a>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-slate-800 text-center text-xs">
-        © {year} MoveSafe Packers and Movers Bangalore. All Rights Reserved. All transit runs are fully insured.
+      <div className="page-shell mt-12 border-t border-slate-800 pt-6 text-center text-xs">
+        &copy; {year} {SITE.name}. All rights reserved.
       </div>
     </footer>
   );

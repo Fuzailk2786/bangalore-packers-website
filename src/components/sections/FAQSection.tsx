@@ -1,27 +1,29 @@
 import { getFAQSchema } from '@/lib/schema-markup';
 
 const FAQS = [
-  { question: "How much do packers and movers charge in Bangalore?", answer: "Local house shifting charges within Bangalore generally range between ₹4,500 to ₹18,000 depending on the volume of household items and distance between locations." },
-  { question: "Do you offer international relocation from Bangalore?", answer: "Yes, we offer door-to-door international logistics, handling customs clearance, air/sea freight shipping, and localized destination drop-offs across major global regions." },
-  { question: "Is insurance included in your packing services?", answer: "We provide options for transparent transit insurance policies covering up to 100% of declared item values against unexpected physical transit damage." }
+  { question: 'How is my moving quote calculated?', answer: 'Pricing depends on the volume of goods, travel distance, floors and lift access, packing needs, vehicle size and any additional services. A survey helps us give a more accurate estimate.' },
+  { question: 'How early should I book my move?', answer: 'Booking one to two weeks ahead is usually helpful, especially near month-end and on weekends. Contact us even for urgent moves and we will confirm availability.' },
+  { question: 'Do you handle moves outside Bangalore?', answer: 'Yes. We coordinate local Bangalore moves as well as intercity household, office and vehicle transport from Bangalore to cities across India.' },
+  { question: 'Can you pack only selected items?', answer: 'Yes. You can request full packing, fragile-item packing, selected-room packing or packing as a standalone service.' },
 ];
 
 export default function FAQSection() {
   const schema = getFAQSchema(FAQS);
 
   return (
-    <section className="py-16 bg-slate-100">
+    <section className="bg-slate-950 py-20 text-white">
       <script 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <div className="max-w-4xl mx-auto px-4">
-        <h2 className="text-3xl font-extrabold text-center text-slate-900 mb-8 tracking-tight">Frequently Asked Questions</h2>
+      <div className="mx-auto max-w-4xl px-4">
+        <p className="mb-3 text-center text-xs font-extrabold uppercase tracking-[0.2em] text-orange-500">Useful answers</p>
+        <h2 className="mb-10 text-center text-3xl font-black tracking-tight sm:text-4xl">Frequently asked questions</h2>
         <div className="space-y-4">
           {FAQS.map((faq, idx) => (
-            <div key={idx} className="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
-              <h3 className="font-bold text-slate-900 text-base md:text-lg mb-1">{faq.question}</h3>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed">{faq.answer}</p>
+            <div key={idx} className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+              <h3 className="mb-2 text-base font-extrabold text-white md:text-lg">{faq.question}</h3>
+              <p className="text-sm leading-relaxed text-slate-400 md:text-base">{faq.answer}</p>
             </div>
           ))}
         </div>

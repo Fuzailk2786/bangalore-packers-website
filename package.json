@@ -1,21 +1,32 @@
 {
-  "name": "bangalore-packers-website",
+  "name": "movesafe-packers-and-movers",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "build": npx prisma generate && next build".  
-}
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "zip": "npm run build && node scripts/create-zip.mjs build",
+    "zip-project": "node scripts/create-zip.mjs project"
+  },
   "dependencies": {
-    "next": "14.1.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "@prisma/client": "^5.22.0"
+    "next": "16.2.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "prisma": "^5.22.0",
-    "typescript": "^5"
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "archiver": "^8.0.0",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
   }
 }

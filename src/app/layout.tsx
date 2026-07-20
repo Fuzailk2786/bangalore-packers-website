@@ -1,30 +1,20 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
-import CallNowButton from '@/components/common/CallNowButton';
-import '../app/globals.css'; // <-- Change it exactly to this!
+import CallNowButton from '@/components/common/callnobutton';
+import { SITE } from '@/lib/site';
+import './globals.css';
 
-const inter = Inter({ subsets: ['latin'], display: 'swap' });
+const manrope = Manrope({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.yourdomain.com'),
   title: {
-    default: 'Best Packers and Movers in Bangalore | Safe & Reliable Shifting',
-    template: '%s | MoveSafe Packers and Movers Bangalore'
+    default: 'MoveSafe Packers and Movers | Packers and Movers in Bangalore',
+    template: `%s | ${SITE.shortName}`,
   },
-  description: 'Top-rated Packers and Movers in Bangalore. Get professional home shifting, office relocation, domestic moving, and vehicle transport services at affordable rates.',
-  alternates: {
-    canonical: './',
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_IN',
-    url: 'https://www.yourdomain.com',
-    siteName: 'MoveSafe Packers and Movers',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'MoveSafe Packers and Movers Bangalore' }]
-  }
+  description: 'Professional home shifting, office relocation, packing and vehicle transport services from HSR Layout, Bangalore.',
 };
 
 export default function RootLayout({
@@ -34,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-slate-50 text-slate-900 antialiased relative min-h-screen pb-16 md:pb-0`}>
+      <body className={`${manrope.className} min-h-screen bg-stone-50 text-slate-900 antialiased pb-[calc(3.5rem+env(safe-area-inset-bottom))] md:pb-0`}>
         <Header />
         <main>{children}</main>
         <Footer />

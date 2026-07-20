@@ -1,26 +1,34 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import QuoteForm from '@/components/forms/QuoteForm';
+import { getWhatsAppUrl, SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Contact Apex Packers and Movers Bangalore | Customer Support Helpdesk',
-  description: 'Get in touch with our support team. Contact our Bangalore office for booking inquiries, pre-move support, or live transit updates.',
+  title: 'Contact MoveSafe',
+  description: 'Contact MoveSafe Packers and Movers in HSR Layout, Bangalore for moving estimates and relocation support.',
 };
 
 export default function ContactPage() {
   return (
-    <div className="py-12 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-      <div className="lg:col-span-7 space-y-6">
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Connect With Our Customer Support Helpdesk</h1>
-        <p className="text-slate-600 leading-relaxed text-sm md:text-base">
-          Have questions about an upcoming move, an active booking, or transit insurance options? Our central support team is here to give you fast, clear assistance.
-        </p>
-        <div className="p-6 bg-white rounded-xl border border-slate-100 shadow-sm space-y-3 text-sm text-slate-700">
-          <p><strong>🏢 Registered Business Entity:</strong> Apex Logistics Cargo Operations Ltd.</p>
-          <p><strong>📧 Immediate Email Support:</strong> support@yourdomain.com</p>
-          <p><strong>📞 Direct Hotline:</strong> +91 98765 43210</p>
+    <main className="bg-stone-50 py-16 lg:py-20">
+      <div className="page-shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div>
+          <p className="eyebrow mb-3">Contact us</p>
+          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">Let&apos;s talk about your move</h1>
+          <p className="mt-5 max-w-xl leading-relaxed text-slate-600">Tell us where you are moving from, where you are going and what needs to be moved. We will help you understand the next steps.</p>
+          <div className="mt-10 space-y-4">
+            <a href={SITE.phoneHref} className="block rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-orange-400">
+              <span className="eyebrow">Phone</span><strong className="mt-2 block text-xl">{SITE.phoneDisplay}</strong>
+            </a>
+            <a href={getWhatsAppUrl('Hello MoveSafe, I would like to discuss a move.')} className="block rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-emerald-500">
+              <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-emerald-600">WhatsApp</span><strong className="mt-2 block text-xl">Message our moving team</strong>
+            </a>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6">
+              <span className="eyebrow">Office</span><address className="mt-2 not-italic leading-relaxed text-slate-700">{SITE.address}</address>
+            </div>
+          </div>
         </div>
+        <QuoteForm />
       </div>
-      <div className="lg:col-span-5"><QuoteForm /></div>
-    </div>
+    </main>
   );
 }

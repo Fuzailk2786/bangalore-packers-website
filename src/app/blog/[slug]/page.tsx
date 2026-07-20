@@ -1,50 +1,46 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import QuoteForm from '@/components/forms/QuoteForm';
+import { getPost, POSTS } from '@/lib/blog';
 
-interface Props {
-  params: { slug: string };
+interface Props { params: Promise<{ slug: string }> }
+
+export function generateStaticParams() {
+  return POSTS.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  if (params.slug !== "packers-movers-charges-bangalore-guide") return {};
-  return {
-    title: 'Packers and Movers Charges in Bangalore (2026 Guide)',
-    description: 'Avoid hidden fees. Learn about real shifting costs in Bangalore, including average rates for 1 BHK, 2 BHK, and 3 BHK homes, along with helpful cost-saving tips.',
-  };
+  const { slug } = await params;
+  const post = getPost(slug);
+  return post ? { title: post.title, description: post.description } : {};
 }
 
-export default function BlogPostPage({ params }: Props) {
-  if (params.slug !== "packers-movers-charges-bangalore-guide") {
-    notFound();
-  }
+export default async function BlogPostPage({ params }: Props) {
+  const { slug } = await params;
+  const post = getPost(slug);
+  if (!post) notFound();
 
   return (
-    <article className="py-12 max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-      <div className="lg:col-span-8 bg-white p-6 md:p-8 rounded-2xl border border-slate-100 shadow-sm">
-        <span className="text-xs text-orange-600 font-bold uppercase tracking-wider">Pricing & Estimates</span>
-        <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mt-2 mb-6">
-          Packers and Movers Charges in Bangalore: Detailed Cost Guides
-        </h1>
-        <div className="prose prose-slate max-w-none text-slate-700 space-y-4 text-sm md:text-base leading-relaxed">
-          <p>
-            Planning a move inside India's tech capital often brings up one big question: <strong>What are the actual charges for professional packers and movers in Bangalore?</strong>
-          </p>
-          <p>
-            While many generic online estimators give vague answers, clear, reliable pricing depends on three main factors: the total volume of goods, the quality of packing materials needed, and the exact distance between properties.
-          </p>
-          <h2 className="text-xl font-bold text-slate-900 pt-4">Estimated Average Pricing Matrix</h2>
-          <p>
-            Local shifting costs within Bangalore generally follow these structural baseline estimates:
-          </p>
-          <ul className="space-y-1 list-disc pl-5 text-sm">
-            <li><strong>1 BHK Apartment Unit:</strong> ₹4,500 to ₹9,000</li>
-            <li><strong>2 BHK Apartment Unit:</strong> ₹7,500 to ₹14,500</li>
-            <li><strong>3 BHK Premium Apartment:</strong> ₹11,000 to ₹22,000</li>
-          </ul>
+    <main className="bg-stone-50 py-16 lg:py-20">
+      <article className="mx-auto max-w-3xl px-4 sm:px-6">
+        <Link href="/blog" className="inline-flex min-h-11 items-center text-sm font-extrabold text-orange-700">&larr; All moving guides</Link>
+        <p className="eyebrow mb-3 mt-10">{post.category} · {post.date}</p>
+        <h1 className="text-4xl font-black tracking-tight sm:text-5xl">{post.title}</h1>
+        <p className="mt-6 text-lg leading-relaxed text-slate-600">{post.intro}</p>
+        <div className="mt-12 space-y-8">
+          {post.sections.map((section) => (
+            <section key={section.heading} className="rounded-2xl border border-slate-200 bg-white p-7">
+              <h2 className="text-xl font-black">{section.heading}</h2>
+              <p className="mt-3 leading-relaxed text-slate-600">{section.text}</p>
+            </section>
+          ))}
         </div>
-      </div>
-      <div className="lg:col-span-4 sticky top-24"><QuoteForm /></div>
-    </article>
+        <div className="mt-12 rounded-3xl bg-slate-950 p-8 text-white">
+          <h2 className="text-2xl font-black">Planning a move?</h2>
+          <p className="mt-2 text-slate-300">Share your route and requirements with the MoveSafe team.</p>
+          <Link href="/request-quote" className="primary-button mt-6">Request a Quote</Link>
+        </div>
+      </article>
+    </main>
   );
 }

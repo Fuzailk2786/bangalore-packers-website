@@ -1,34 +1,27 @@
-// src/app/request-quote/page.tsx
+import type { Metadata } from 'next';
+import QuoteForm from '@/components/forms/QuoteForm';
+import { SITE } from '@/lib/site';
 
-import React from "react";
-import QuoteForm from "@/components/ui/QuoteForm";
-import StickyHeader from "@/components/ui/StickyHeader";
-import FAQSection from "@/components/ui/FAQSection";
-
-export const metadata = {
-  title: "Get an Instant Relocation Quote Bangalore | Portavo Move",
-  description: "Request a transparent relocation quote online. Itemized pricing for domestic moving, office relocations, and vehicle transport.[2, 3, 43]",
+export const metadata: Metadata = {
+  title: 'Request a Moving Quote',
+  description: 'Share your moving requirements with MoveSafe and request a relocation estimate.',
 };
 
 export default function RequestQuotePage() {
   return (
-    <>
-      <StickyHeader />
-      <main className="bg-slate-950 min-h-screen text-white pt-24">
-        <section className="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-          <div className="max-w-xl mx-auto space-y-3">
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-500">Instant Estimate</span>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Request Your Relocation Quote</h1>
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Complete the two-step form below to request a detailed relocation estimate from our planning team.
-            </p>
+    <main className="bg-slate-950 py-16 text-white lg:py-20">
+      <div className="page-shell grid items-center gap-12 lg:grid-cols-2">
+        <div>
+          <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.2em] text-orange-500">Free estimate</p>
+          <h1 className="text-4xl font-black tracking-tight sm:text-5xl">Share the basics. We&apos;ll help plan the rest.</h1>
+          <p className="mt-5 max-w-xl leading-relaxed text-slate-300">A useful estimate starts with your route, date and inventory. Send those details on WhatsApp using this form, or call us directly.</p>
+          <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-6">
+            <p className="text-sm text-slate-400">Prefer to speak?</p>
+            <a href={SITE.phoneHref} className="mt-1 inline-flex min-h-11 items-center text-2xl font-black text-orange-400">{SITE.phoneDisplay}</a>
           </div>
-          <div className="relative">
-            <QuoteForm />
-          </div>
-        </section>
-        <FAQSection />
-      </main>
-    </>
+        </div>
+        <QuoteForm />
+      </div>
+    </main>
   );
 }
