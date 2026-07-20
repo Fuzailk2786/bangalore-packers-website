@@ -1,10 +1,10 @@
 export const SITE = {
   name: 'MoveSafe Packers and Movers',
   shortName: 'MoveSafe',
-  phone: '9535040554',
-  phoneDisplay: '+91 95350 40554',
-  phoneHref: 'tel:+919535040554',
-  whatsappNumber: '919535040554',
+  phone: '8884455199',
+  phoneDisplay: '+91 88844 55199',
+  phoneHref: 'tel:+918884455199',
+  whatsappNumber: '918884455199',
   address: 'No. 45, 3rd Cross, HSR Layout, Sector 2, Bangalore, Karnataka 560102',
   shortAddress: 'HSR Layout, Sector 2, Bangalore 560102',
 } as const;
